@@ -15,7 +15,7 @@
 			<table class="table table-bordered table-striped mt-4">
 				<thead>
 					<tr>
-						<th width="80px">SL</th>
+						<th width="80px" class="text-center">SL</th>
 						<th>Name</th>
 						<th>Description</th>
 						<th class="text-center" width="100px">Image</th>
@@ -25,18 +25,17 @@
 				<tbody>
 					@forelse ($categories as $category)
 						<tr class="align-middle">
-							<td>{{$loop->iteration}}</td>
+							<td class="text-center">{{$loop->iteration}}</td>
 							<td>{{$category->name}}</td>
 							<td>{{$category->description}}</td>
 							<td class="text-center"><img src="{{image_url($category->image)}}" alt="" class="img-thumbnail"></td>
 							<td class="text-center">								
-								
 								<form method="POST" action="{{route('category.destroy',$category->id)}}">
 									<a href="{{route('category.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i> Show</a>
 									<a href="{{route('category.edit',$category->id)}}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-pencil"></i> Edit</a>
 									@csrf
 									@method('DELETE')
-									<button type="submit" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete it?');"></i> Delete</button>
+									<button type="submit" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete it?');"><i class="fa-solid fa-trash-can"></i> Delete</button>
 								</form>
 							</td>
 						</tr>
