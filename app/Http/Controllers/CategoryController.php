@@ -64,7 +64,7 @@ class CategoryController extends Controller
     {
         try{
             (new Category())->updateCategory($request,$category);
-            return redirect()->route('category.index')->with('success','Category created successfully');
+            return redirect()->route('category.index')->with('success','Category updated successfully');
         }catch(Throwable $throwable){
 
         }
