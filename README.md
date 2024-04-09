@@ -11,9 +11,11 @@
   - Step 8: Add Blade Files
   - Run Laravel 11 App
 
-<p align="center"><a href="https://creativehabib.com" target="_blank"><img src="https://i.postimg.cc/Lm78pcT6/Laravel-11-crud-example.png" width="400" alt="Laravel 11 CRUD"></a></p>
-
 ![laravel-11-crud-example](https://i.postimg.cc/Lm78pcT6/Laravel-11-crud-example.png)
+
+![laravel-11-crud-example](https://i.postimg.cc/NBQnsbG3/laravel-crud-2.png)
+
+![laravel-11-crud-example](https://i.postimg.cc/nZ45fNxK/laravel-crud-1.png)
 
  Run `php artisan serve` for a dev server. Navigate to `http://localhost:8000/`. The application will automatically reload if you change any of the source files.
 
