@@ -1,5 +1,5 @@
-<div class="mb-3">
-    <label class="form-label" for="name">Name</label>
+<div class="form-group mb-3">
+    <label class="form-label" for="name">Name:</label>
     <input 
         type="text"
         name="name"
@@ -10,10 +10,10 @@
         @error('name')
             <div class="form-text text-danger">{{ $message }}</div>
         @enderror
-</div>
+  </div>
 
-<div class="mb-3">
-    <label for="description" class="form-label">Description</label>
+<div class="form -group mb-3">
+    <label for="description" class="form-label">Description:</label>
     <textarea 
         class="form-control @error('description') is-invalid @enderror"
         id="description"
@@ -25,8 +25,8 @@
             <div class="form-text text-danger">{{$message}}</div>
         @enderror
 </div>
-<div class="mb-3">
-    <label for="image" class="form-label">Image Upload</label>
+<div class="form-group mb-3">
+    <label for="image" class="form-label">Category Image:</label>
     <img src="{{$category->image != null ? image_url($category->image) : asset('assets/image/default-image.jpg')}}" class="img-fluid d-block img-thumbnail w-25" id="image_upload" alt="...">
     <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image_upload_input">
     @error('image')

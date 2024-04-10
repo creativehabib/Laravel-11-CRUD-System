@@ -12,6 +12,14 @@
 				<a href="{{route('category.create')}}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Add Category</a>
 			</div>
 
+			<div class="w-25">
+				<form>
+					<div class="d-flex">
+						<input type="text" name="search" id="search" class="form-control" placeholder="Search here...">
+						<button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+					</div>
+				</form>
+			</div>
 			<table class="table table-bordered table-striped mt-4">
 				<thead>
 					<tr>
@@ -19,7 +27,7 @@
 						<th>Name</th>
 						<th>Description</th>
 						<th class="text-center" width="100px">Image</th>
-						<th width="250px" class="text-center">Action</th>
+						<th width="150px" class="text-center">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,11 +39,11 @@
 							<td class="text-center"><img src="{{image_url($category->image)}}" alt="" class="img-thumbnail"></td>
 							<td class="text-center">								
 								<form method="POST" action="{{route('category.destroy',$category->id)}}">
-									<a href="{{route('category.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i> Show</a>
-									<a href="{{route('category.edit',$category->id)}}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-pencil"></i> Edit</a>
+									<a href="{{route('category.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i></a>
+									<a href="{{route('category.edit',$category->id)}}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-pencil"></i></a>
 									@csrf
 									@method('DELETE')
-									<button type="submit" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete it?');"><i class="fa-solid fa-trash-can"></i> Delete</button>
+									<button type="submit" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete it?');"><i class="fa-solid fa-trash-can"></i></button>
 								</form>
 							</td>
 						</tr>
