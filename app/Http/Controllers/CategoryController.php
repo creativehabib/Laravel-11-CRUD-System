@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Seo;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Support\Facades\File;
@@ -16,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(5);
-        return view('category.index', compact('categories'));
+        $categories = (new Category())->get_category_list();
+        return view('modules.category.index', compact('categories'));
     }
 
     /**
@@ -26,7 +27,8 @@ class CategoryController extends Controller
     public function create()
     {
         $category = new Category();
-        return view('category.create',compact('category'));
+        $categories = (new Category())->get_category_assoc();
+        return view('modules.category.create',compact('category','categories'));
     }
 
     /**
@@ -34,8 +36,10 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        // dd($request->all());
         try{
-            (new Category())->storeCategory($request);
+            $category = (new Category())->storeCategory($request);
+            $seo = (new Seo())->store_seo($request, $category);
             return redirect()->route('category.index')->with('success','Category created successfully');
         }catch(Throwable $throwable){
 
@@ -47,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', compact('category'));
+        return view('modules.category.show', compact('category'));
     }
 
     /**
@@ -55,7 +59,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
+        $categories = (new Category())->get_category_assoc();
+        return view('modules.category.edit', compact('category','categories'));
     }
 
     /**
@@ -65,6 +70,7 @@ class CategoryController extends Controller
     {
         try{
             (new Category())->updateCategory($request,$category);
+            (new Seo())->update_seo($request, $category);
             return redirect()->route('category.index')->with('success','Category updated successfully');
         }catch(Throwable $throwable){
 
@@ -76,11 +82,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $imagePath = public_path(Category::IMAGE_UPLOAD_PATH.$category->image);
-        if(File::exists($imagePath)){
-            File::delete($imagePath);
-        }
         $category->delete();
         return redirect()->route('category.index')->with('success','Category deleted successfully');
+    }
+
+
+    public function updateStatus(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->status = $request->status;
+        if ($category->save()) {
+            return 1;
+        }
+        return 0;
     }
 }

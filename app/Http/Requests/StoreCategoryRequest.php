@@ -22,9 +22,15 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'          => ['required','string','max:255','unique:categories,name'],
-            'description'   => ['required','string','max:255'],
-            'image'         => ['required', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp']
+            'name'              => ['required','string','max:255','unique:categories,name'],
+            'slug'              => ['required', 'string', 'max:255', 'unique:categories,slug'],
+            'description'       => ['required','string'],
+            'status'            => ['required', 'numeric', 'in:1,2'],
+            'cat_image'         => ['required'],
+            'meta_title'        => ['required', 'string', 'max:255'],
+            'meta_description'  => ['required', 'string', 'max:255'],
+            'meta_keywords'     => ['required', 'string', 'max:255'],
+            'meta_image'        => ['required']
         ];
     }
 }

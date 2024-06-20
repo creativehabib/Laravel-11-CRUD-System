@@ -23,8 +23,14 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name'              => ['required', 'string', 'max:255', 'unique:categories,name,' .$this->category->id],
-            'description'       => ['required','string','max:255'],
-            'image'             => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
+            'slug'              => ['required', 'string', 'max:255', 'unique:categories,slug,' .$this->category->id],
+            'description'       => ['required','string'],
+            'status'            => ['required', 'numeric', 'in:1,2'],
+            'cat_image'         => ['nullable'],
+            'meta_title'        => ['nullable', 'string', 'max:255'],
+            'meta_description'  => ['nullable', 'string', 'max:255'],
+            'meta_keywords'     => ['nullable', 'string', 'max:255'],
+            'meta_image'        => ['nullable']
         ];
     }
 }
