@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\MediaManager;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Support\Facades\File;
+use Throwable;
 
 class MediaManagerController extends Controller
 {
-    # get media files
-    public function index(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function index(Request $request): array
     {
         $searchKey  = null;
         $type       = null;
@@ -36,7 +41,7 @@ class MediaManagerController extends Controller
             $searchKey = $request->searchKey;
             $mediaFiles = $mediaFiles->where('media_name', 'like', '%' . $request->searchKey . '%');
         }
-        $mediaFiles  = $mediaFiles->whereNotIn('id', $recentFileIds)->paginate(paginationNumber(30))->appends(request()->query());
+        $mediaFiles  = $mediaFiles->whereNotIn('id', $recentFileIds)->paginate(paginationNumber(20))->appends(request()->query());
 
         return [
             'status' => true,
@@ -46,8 +51,11 @@ class MediaManagerController extends Controller
         ];
     }
 
-    # get selected media files
-    public function selectedFiles(Request $request)
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function selectedFiles(Request $request): array
     {
         $mediaFiles = MediaManager::whereIn('id', $request->mediaIds)->get();
         return [
@@ -56,12 +64,16 @@ class MediaManagerController extends Controller
         ];
     }
 
-    # store media file to media manager
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return void
+     * @throws Throwable
+     */
+    public function store(Request $request): void
     {
         try {
             (new MediaManager())->storeImage($request);
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             throw $th;
         }
 
@@ -77,17 +89,21 @@ class MediaManagerController extends Controller
         return response()->json($data);
     }
 
-    public function mediaUpdate(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function mediaUpdate(Request $request): JsonResponse
     {
         $res = array();
 
-        $id = $request->input('RecordId');
-        $title = $request->input('title');
-        $alt_title = $request->input('alternative_text');
+        $id         = $request->input('RecordId');
+        $title      = $request->input('title');
+        $alt_title  = $request->input('alternative_text');
 
         $data = [
-            'media_title' => $title,
-            'media_alt' => $alt_title,
+            'media_title'   => $title,
+            'media_alt'     => $alt_title,
         ];
         if ($request->hasFile('media_file')){
             $data = MediaManager::where('id', $id)->first();
@@ -112,7 +128,7 @@ class MediaManagerController extends Controller
                 } else {
                     $data['media_type'] = "unknown";
                 }
-               
+
             }
         $response = MediaManager::where('id', $id)->update($data);
         if($response){
@@ -126,8 +142,11 @@ class MediaManagerController extends Controller
         return response()->json($res);
     }
 
-    # delete media
-    public function delete($id)
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function delete($id): RedirectResponse
     {
         $mediaFile = MediaManager::findOrFail($id);
         if (!is_null($mediaFile->media_file)) {

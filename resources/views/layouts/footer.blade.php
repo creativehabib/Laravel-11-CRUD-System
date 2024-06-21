@@ -28,21 +28,21 @@
 
             // on click delete confirmation -- outside footable
             function confirmDelete(thisLink) {
-                var url = $(thisLink).data("href");
+                const url = $(thisLink).data("href");
                 $("#delete-modal").modal("show");
                 $("#delete-link").attr("href", url);
             }
 
             // on click Hidden confirmation -- outside footable
             function confirmHidden(thisLink) {
-                var url = $(thisLink).data("href");
+                const url = $(thisLink).data("href");
                 $("#hide-modal").modal("show");
                 $("#hide-link").attr("href", url);
             }
 
             // on click all delete confirmation -- outside footable
             function confirmAllDelete(thisLink) {
-                var url = $(thisLink).data("href");
+                const url = $(thisLink).data("href");
                 $("#all-delete-modal").modal("show");
                 $("#all-delete-link").attr("href", url);
             }
@@ -52,7 +52,7 @@
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/getMediaById",
-                
+
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "id": + id
@@ -80,21 +80,21 @@
             });
         }
 
-        
+
         //Reset input file
         $('input[type="file"][name="media_file"]').val('');
 
         $('input[type="file"][name="media_file"]').on('change',function() {
-            var img_path = $(this)[0].value;
-            var img_holder = $('#media_preview_img');
-            var currentImagePath = $(this).data('value');
-            var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
-            if(extension == 'jpg' || extension == 'jpeg' || extension == 'png' || extension == 'webp'){
+            const img_path = $(this)[0].value;
+            const img_holder = $('#media_preview_img');
+            const currentImagePath = $(this).data('value');
+            const extension = img_path.substring(img_path.lastIndexOf('.') + 1).toLowerCase();
+            if(extension === 'jpg' || extension === 'jpeg' || extension === 'png' || extension === 'webp'){
                 if(typeof(FileReader) != 'undefined'){
                     img_holder.empty();
-                    var reader = new FileReader();
+                    const reader = new FileReader();
                     reader.onload = function(e){
-                        $('<img/>', {'src':e.target.result, 'class':'img-fluid', 'style':'max-width:100px;margin-buttom:10px;'}).appendTo(img_holder)
+                        $('<img/>', {'src':e.target.result, 'class':'img-fluid mw-100 mb-10'}).appendTo(img_holder)
                     }
                     img_holder.show();
                     reader.readAsDataURL($(this)[0].files[0]);
@@ -107,7 +107,7 @@
         });
 
         $(document).on('click', '#clearInputFile', function(){
-            var form = $(this).closest('form');
+            const form = $(this).closest('form');
             $(form).find('input[type="file"]').val('');
             $(form).find('#media_preview_img').html($(form).find('input[type="file"]').data('value'));
         });
@@ -130,14 +130,16 @@
                 success: function (response) {
                     if (response.msgType === "success") {
                         alert(response.msg);
-                        window.location()
+                        const bsOffcanvas = bootstrap.Offcanvas.getInstance('#offcanvasRight');
+                        bsOffcanvas.hide();
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.reload(); // then reload the page.(3)
+                        }, 400);
                     } else {
                     }
                 },
             })
         });
-
-
 
         </script>
 

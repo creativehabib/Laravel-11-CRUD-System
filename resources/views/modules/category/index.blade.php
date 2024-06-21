@@ -43,7 +43,7 @@
 								@endif
 							</td>
 							<td>{!! htmlspecialchars_decode($category->description) !!}</td>
-							<td class="text-center"><img src="{{staticAsset($category->image?->media_file)}}" alt="" class="img-thumbnail"></td>
+							<td class="text-center"><img src="{{staticAsset($category->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="{{ $category->image?->media_alt ?? 'Not alt title' }}" class="img-thumbnail"></td>
 							<td class="text-center">
 								<form method="POST" action="{{route('category.destroy',$category->id)}}">
 									<a href="{{route('category.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i></a>

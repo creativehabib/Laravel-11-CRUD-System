@@ -37,7 +37,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 mt-2">
 					<div class="form-group">
 						<strong>Image:</strong> <br/>
-						<img src="{{staticAsset($category->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="" class="img-thumbnail w-25">
+						<img src="{{staticAsset($category->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="{{ $category->image?->media_alt ?? 'Not alt title' }}" class="img-thumbnail w-25">
 					</div>
 				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
@@ -61,7 +61,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                     <div class="form-group">
                         <strong>Meta Image:</strong> <br/>
-                        <img src="{{ staticAsset($category->seo?->image->media_file ?? 'assets/image/default-image.jpg') }}" class="img-thumbnail w-25">
+                        <img src="{{ staticAsset($category->seo?->image->media_file ?? 'assets/image/default-image.jpg') }}" alt="{{ $category->seo?->image->media_alt ?? 'Not alt title' }}" class="img-thumbnail w-25">
                     </div>
                 </div>
 			</div>

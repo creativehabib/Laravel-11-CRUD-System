@@ -42,7 +42,7 @@
 								@endif
 							</td>
 							<td>{!! htmlspecialchars_decode($post->post_description) !!}</td>
-							<td class="text-center"><img src="{{staticAsset($post->image?->media_file ?? 'assets/image/default.jpg')}}" alt="" class="img-thumbnail"></td>
+							<td class="text-center"><img src="{{staticAsset($post->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="{{$post->image?->media_alt ?? 'Not alt title'}}" class="img-thumbnail"></td>
 							<td class="text-center">
 								<form method="POST" action="{{route('post.destroy',$post->id)}}">
 									<a href="{{route('post.show',$post->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i></a>

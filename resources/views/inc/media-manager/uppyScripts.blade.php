@@ -1,8 +1,8 @@
 <script type="module">
     import {Uppy, Dashboard, ImageEditor, DropTarget, XHRUpload} from "{{ staticAsset('backend/assets/js/vendors/uppy.min.js') }}"
     var uppy = new Uppy({
-            restrictions: { 
-                allowedFileTypes: TT.allowedFileTypes, 
+            restrictions: {
+                allowedFileTypes: TT.allowedFileTypes,
             }
         })
         .use(Dashboard, {
@@ -15,7 +15,7 @@
         })
         .use(ImageEditor, { target: Dashboard })
         // Allow dropping files on any element or the whole document
-        .use(DropTarget, { 
+        .use(DropTarget, {
             target: 'DashboardContainer'
         })
         .use(XHRUpload, {
@@ -49,7 +49,7 @@
     TT.uploadQty = "single";
     TT.selectedFiles = null;
     TT.nextPageUrl = null;
-    // required 
+    // required
 
     // get the media files via ajax
     async function getMediaFiles(getMediaType = TT.getMediaType, getMediaSearch = TT.getMediaSearch, search = false, divType = '') {
@@ -76,7 +76,7 @@
             url: url,
             success: function(data) {
 
-                if (search == false) {
+                if (search === false) {
                     $('.recent-uploads').append(data.recentFiles); // if !searched
                 }
                 $('.previous-uploads').append(data.mediaFiles);
@@ -129,7 +129,7 @@
                     setTimeout(() => {
                         activeSelectedFiles();
                     }, 400);
-                    initFeather();
+                    // initFeather();
                 }
             });
         }
@@ -149,12 +149,12 @@
             url: '{{ route('uppy.selectedFiles') }}',
             success: function(data) {
 
-                if (TT.uploadQty = "single") {
+                if (TT.uploadQty === "single") {
                     target.children().not('.choose-media').remove();
                 }
 
                 target.prepend(data.mediaFiles);
-                initFeather();
+                // initFeather();
             }
         });
     }
@@ -165,7 +165,7 @@
         let selectedFilesInput = $(thisWrapper).find('input');
         TT.uploadQty = $(thisWrapper).data("selection");
 
-        TT.selectedFiles = selectedFilesInput.val() != '' ? selectedFilesInput.val() : null;
+        TT.selectedFiles = selectedFilesInput.val() !== '' ? selectedFilesInput.val() : null;
         TT.selectedFilesInput = selectedFilesInput;
 
         TT.showSelectedFilesDiv = $(thisWrapper).parent();
@@ -183,7 +183,7 @@
         let selectedFilesInput = $(thisWrapper).find('input');
         TT.uploadQty = $(thisWrapper).data("selection");
 
-        TT.selectedFiles = selectedFilesInput.val() != '' ? selectedFilesInput.val() : null;
+        TT.selectedFiles = selectedFilesInput.val() !== '' ? selectedFilesInput.val() : null;
         TT.selectedFilesInput = selectedFilesInput;
 
         TT.showSelectedFilesDiv = $('#vision_image');
@@ -205,10 +205,10 @@
         }
     }
 
-    // on click event handler of files 
+    // on click event handler of files
     function handleSelectedFiles(fileId) {
-        $('[data-active-file-id!=' + fileId + ']').removeClass('active-image'); // remove active class 
-        if (TT.uploadQty == "single") {
+        $('[data-active-file-id!=' + fileId + ']').removeClass('active-image'); // remove active class
+        if (TT.uploadQty === "single") {
             TT.selectedFiles = '' + fileId + ''
         } else {
             if (TT.selectedFiles != null) {
@@ -217,7 +217,7 @@
                 if (tempSelected.includes('' + fileId + '')) {
 
                     tempSelected = tempSelected.filter(tempId => {
-                        return tempId != '' + fileId + ''
+                        return tempId !== '' + fileId + ''
                     })
 
                     $('[data-active-file-id=' + fileId + ']').removeClass(
@@ -243,12 +243,12 @@
 
     // show the selected file count in the media manager card-header
     function getSelectedFilesCount() {
-        //  
+        //
     }
 
     // show the chosen file count in specific pages
     function getChosenFilesCount() {
-        //  
+        //
     }
 
     // show selected files preview after selecting files from media manager
@@ -268,7 +268,7 @@
         });
     }
 
-    // remove (after clicking remove button) selected file in specific pages 
+    // remove (after clicking remove button) selected file in specific pages
     function removeSelectedFile(thisButton, mediaFileId) {
         let removeFileDiv = $(thisButton).closest('.selected-file'); //removeFileDiv.remove();
         let showSelectedFilesDiv = removeFileDiv.parent(); // .show-selected-files
