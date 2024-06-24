@@ -11,9 +11,7 @@
                     <div class="mb-4">
                         <label for="meta_title" class="form-label">{{ __('Meta Title') }}</label>
                         <input type="text" value="{{ old('meta_title', $seo->meta_title ?? '') }}" name="meta_title" id="meta_title"
-                            placeholder="{{ __('Type meta title') }}" class="form-control @error('meta_title') is-invalid
-
-                            @enderror">
+                            placeholder="{{ __('Type meta title') }}" class="form-control @error('meta_title') is-invalid @enderror">
                             @error('meta_title')
                             <div class="form-text text-danger" id="slugHelpBlock">{{ $message }}</div>
                         @enderror

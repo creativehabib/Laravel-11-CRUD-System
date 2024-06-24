@@ -3,7 +3,7 @@
     onclick="handleSelectedFiles({{ $mediaFile->id }})">
     <div class="tt-media-img">
         @if ($mediaFile->media_type == 'image')
-            <img src={{ uploadedAsset($mediaFile->id) }} class="img-fluid"  alt="{{ $mediaFile->media_alt }}"/>
+            <img src={{ uploadedAsset($mediaFile->id) }} class="img-fluid"  alt="{{ $mediaFile->media_alt ?? 'No alt title' }}"/>
         @else
         @endif
 
@@ -27,5 +27,5 @@
     </div>
 </div>
 @empty
-<div class="text-center text-danger p-5">{{ __('No data found') }}</div>
+<div class="text-center text-danger pt-5">{{ __('No data found') }}</div>
 @endforelse

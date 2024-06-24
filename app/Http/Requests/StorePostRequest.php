@@ -24,10 +24,8 @@ class StorePostRequest extends FormRequest
         return [
             'post_title'                => ['required','string','max:255','unique:posts,post_title'],
             'post_slug'                 => ['required', 'string', 'max:255', 'unique:posts,post_slug'],
-            'post_description'          => ['required','string'],
-            'status'                    => ['required', 'numeric', 'in:1,2'],
-            'post_image'                => ['required']
-            
+            'post_description'          => ['nullable','string'],
+            'status'                    => ['required', 'numeric', 'in:1,2'],            
         ];
     }
 }

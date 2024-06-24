@@ -39,7 +39,7 @@ class CategoryController extends Controller
         // dd($request->all());
         try{
             $category = (new Category())->storeCategory($request);
-            $seo = (new Seo())->store_seo($request, $category);
+            (new Seo())->store_seo($request, $category);
             return redirect()->route('category.index')->with('success','Category created successfully');
         }catch(Throwable $throwable){
 
