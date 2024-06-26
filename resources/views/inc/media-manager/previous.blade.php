@@ -8,10 +8,12 @@
             @endif
 
         </div>
+        @php $data = getimagesize($mediaFile->media_file);@endphp
         <div class="tt-media-info-wrap p-2">
             <div class="tt-media-info">
                 <p class="fs-base mb-0 text-truncate">{{ $mediaFile?->media_title }}</p>
-                <span class="text-muted fs-sm text-truncate">{{ $mediaFile->media_extension }}</span>
+                <span class="text-muted fs-sm text-truncate">{{ $mediaFile->media_extension }} ({{round($mediaFile->media_size/1024)}}KB)</span>
+                <span class="fs-sm">{{$data[0]}} x {{$data[1]}}</span>
             </div>
         </div>
 
