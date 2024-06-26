@@ -258,7 +258,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 7;
     box-shadow: 0 0 0 1px var(--bs-border-color-translucent) !important;
 }
 

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ staticAsset('assets/css/style.css')}}">
         <style type="text/css">
             .dropdown-menu[data-bs-popper] {left: -87px;}
+            .sticky-top {z-index: 8;}
         </style>
         @stack('css')
     </head>
