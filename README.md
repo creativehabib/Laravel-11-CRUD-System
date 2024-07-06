@@ -14,7 +14,8 @@
 ![laravel-11-crud-example](https://i.postimg.cc/Lm78pcT6/Laravel-11-crud-example.png)
 
 ![laravel-11-crud-example](https://i.postimg.cc/NBQnsbG3/laravel-crud-2.png)
-
+![laravel-11-crud-example](https://i.postimg.cc/QsZmB9C8/Category-crud.png)
+![laravel-11-crud-example](https://i.postimg.cc/Mx0D16fy/laravel-crud-image-manager.png)
 ![laravel-11-crud-example](https://i.postimg.cc/nZ45fNxK/laravel-crud-1.png)
 
  Run `php artisan serve` for a dev server. Navigate to `http://localhost:8000/`. The application will automatically reload if you change any of the source files.
