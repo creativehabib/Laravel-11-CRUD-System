@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -111,6 +112,14 @@ class Category extends Model
     public function image()
     {
         return $this->belongsTo(MediaManager::class, 'cat_image');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function post(): HasMany
+    {
+        return $this->hasMany(Post::class, 'category_id');
     }
 
 

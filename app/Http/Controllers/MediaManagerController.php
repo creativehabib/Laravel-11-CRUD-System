@@ -149,7 +149,7 @@ class MediaManagerController extends Controller
     public function delete($id): RedirectResponse
     {
         $mediaFile = MediaManager::findOrFail($id);
-        if (!is_null($mediaFile->media_file)) {
+        if (!is_null($mediaFile)) {
             $imagePath = public_path($mediaFile->media_file);
             if(File::exists($imagePath)){
                 File::delete($imagePath);
@@ -158,6 +158,12 @@ class MediaManagerController extends Controller
         $mediaFile->delete();
 
         flash()->success(__('File has been deleted successfully'));
-        return redirect()->route('mediaManager.index');
+        return back();
     }
+
+    // public function delete(MediaManager $mediaManager){
+    //     (new MediaManager())->delete_media($mediaManager);
+    //     flash()->success(__('File has been deleted successfully'));
+    //     return redirect()->route('mediaManager.index');
+    // }
 }

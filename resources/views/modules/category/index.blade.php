@@ -25,6 +25,7 @@
 						<th width="80px" class="text-center">SL</th>
 						<th>Name</th>
 						<th class="text-center">Status</th>
+						<th class="text-center">Post Count</th>
 						<th>Description</th>
 						<th class="text-center" width="100px">Image</th>
 						<th width="150px" class="text-center">Action</th>
@@ -42,6 +43,8 @@
 									<i class="fa-regular fa-circle-xmark text-danger"></i>
 								@endif
 							</td>
+							<td class="text-center">{{$category->post?->count()}}</td>
+
 							<td>{!! htmlspecialchars_decode($category->description) !!}</td>
 							<td class="text-center"><img src="{{staticAsset($category->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="{{ $category->image?->media_alt ?? 'Not alt title' }}" class="img-thumbnail"></td>
 							<td class="text-center">

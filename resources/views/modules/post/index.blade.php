@@ -23,6 +23,7 @@
 					<tr>
 						<th width="80px" class="text-center">SL</th>
 						<th>Name</th>
+						<th class="text-center">Category</th>
 						<th class="text-center">Status</th>
 						<th>Description</th>
 						<th class="text-center" width="100px">Image</th>
@@ -34,6 +35,7 @@
 						<tr class="align-middle">
 							<td class="text-center">{{$loop->iteration}}</td>
 							<td>{{$post->post_title}}</td>
+							<td class="text-center"><a href="{{route('category.edit',$post->category?->id)}}">{{$post->category?->name}}</a></td>
 							<td class="text-center">
 								@if($post->status == \App\Models\Post::STATUS_ACTIVE)
 									<i class="fas fa-circle-check text-success"></i>
