@@ -52,13 +52,13 @@ class MediaManager extends Model
 
     final public function delete_media(Model $model): void
     {
-        if(!empty($model->media_file)){
-            $imagePath = public_path('uploads/media/'.$model->media_file);
-            if(File::exists($imagePath)){
-                File::delete($imagePath);
-            }
-        }
-        $model->delete();
+        if (!is_null($model->media_file)) {
+             $imagePath = public_path($model->media_file);
+             if(File::exists($imagePath)){
+                 File::delete($imagePath);
+             }
+         }
+         $model->delete();
     }
 
 }
