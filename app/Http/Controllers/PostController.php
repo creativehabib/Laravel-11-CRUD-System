@@ -39,7 +39,8 @@ class PostController extends Controller
         try{
             $post = (new Post())->storePost($request);
             (new Seo())->store_seo($request, $post);
-            return redirect()->route('post.index')->with('success','Post created successfully');
+            flash()->success(__('Post created successfully'));
+            return redirect()->route('post.index');
         }catch(Throwable $throwable){
 
         }
@@ -70,7 +71,8 @@ class PostController extends Controller
         try{
             (new Post())->updatePost($request, $post);
             (new Seo())->update_seo($request, $post);
-            return redirect()->route('post.index')->with('success','Post updated successfully');
+            flash()->success(__('Post updated successfully'));
+            return redirect()->route('post.index');
         } catch(Throwable $throwable){
 
         }
@@ -82,6 +84,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('post.index')->with('success','Post deleted successfully');
+        flash()->success(__('Post deleted successfully'));
+        return back();
     }
 }

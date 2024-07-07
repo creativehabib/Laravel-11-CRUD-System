@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('post_title');
             $table->string('post_slug')->unique();
-            $table->text('post_description');
+            $table->text('post_description')->nullable();
             $table->boolean('status')->nullable()->comment('1 = active, 2 = inactive,');
             $table->string('post_image')->nullable();
             $table->timestamps();

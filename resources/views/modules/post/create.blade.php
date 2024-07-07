@@ -28,13 +28,13 @@
 	<script>
 		"use strict";
         function toSlug(str) {
-                str = str.toLowerCase();
-                str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                str = str.replace(/[đĐ]/g, 'd');
-                str = str.replace(/([^0-9a-z-\s])/g, '');
-                str = str.replace(/(\s+)/g, '-');
-                str = str.replace(/-+/g, '-');
-                str = str.replace(/^-+|-+$/g, '');
+                str = str?.toLowerCase();
+                str = str?.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                str = str?.replace(/[đĐ]/g, 'd');
+                str = str?.replace(/([^0-9a-z-\s])/g, '');
+                str = str?.replace(/(\s+)/g, '-');
+                str = str?.replace(/-+/g, '-');
+                str = str?.replace(/^-+|-+$/g, '');
                 return str;
             }
 
@@ -58,15 +58,13 @@
 		})
 
 
-        $('#description').on('input', function (){
-            var description = tinymce.get("description").getContent();
+        $('#descriptions').on('input', function (){
+            var description = $(this).val();
             if(description.length > 155){
                 description = description.substring(0,155) + "..."
             }
-            $('#meta_keywords').val(description)
+            $('#meta_description').val(description)
         })
 
 	</script>
-
-	<x-head.tinymce-config/>
 @endpush

@@ -73,6 +73,7 @@ class MediaManagerController extends Controller
     {
         try {
             (new MediaManager())->storeImage($request);
+            flash()->success(__('Media uploaded successfully'));
         } catch (Throwable $th) {
             throw $th;
         }

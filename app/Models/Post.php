@@ -72,15 +72,15 @@ class Post extends Model
 
     public function prepareData(Request $request, Model|NULL $post = null) :array
     {
+
         $data = [
             'post_title'            => $request->input('post_title'),
             'post_slug'             => Str::slug($request->input('post_slug')),
             'post_description'      => $request->input('post_description'),
             'status'                => $request->input('status'),
-            'post_image'            => $request->input('post_image'),
-            'category_id'           => $request->input('category_id')
+            'category_id'           => $request->input('category_id'),
+            'post_image'            => $request->input('post_image')
         ];
-
         return $data;
     }
 

@@ -1,4 +1,4 @@
-    <script src="https://cdn.tiny.cloud/1/5j5xp0r6awo563w7fy4x2bs9kdynz9k6qbz9m7hj3gog4sdr/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/t3ue4oohfwnuwd4kadmho2qwnhd4l82c4r76v4obczrbn9eo/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         const useDarkMode = window.matchMedia('(prefers-color-scheme: light)').matches;
         const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;

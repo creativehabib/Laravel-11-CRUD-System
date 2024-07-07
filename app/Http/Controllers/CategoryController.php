@@ -40,7 +40,8 @@ class CategoryController extends Controller
         try{
             $category = (new Category())->storeCategory($request);
             (new Seo())->store_seo($request, $category);
-            return redirect()->route('category.index')->with('success','Category created successfully');
+            flash()->success(__('Category created successfully'));
+            return redirect()->route('category.index');
         }catch(Throwable $throwable){
 
         }
@@ -71,7 +72,8 @@ class CategoryController extends Controller
         try{
             (new Category())->updateCategory($request,$category);
             (new Seo())->update_seo($request, $category);
-            return redirect()->route('category.index')->with('success','Category updated successfully');
+            flash()->success(__('Category updated successfully'));
+            return redirect()->route('category.index');
         }catch(Throwable $throwable){
 
         }
@@ -83,7 +85,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('category.index')->with('success','Category deleted successfully');
+        flash()->success(__('Category deleted successfully'));
+        return redirect()->route('category.index');
     }
 
 
