@@ -3,7 +3,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="d-grid grap-2 d-md-flex justify-content-md-end">
-				<a href="{{route('post.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+				<a href="{{route('posts.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">

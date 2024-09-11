@@ -24,9 +24,8 @@ class MediaManagerController extends Controller
         $type       = null;
 
         $mediaFiles = MediaManager::query()->latest();
-
         // if (Auth::user()->user_type != 'admin') {
-            $mediaFiles = $mediaFiles->where('user_id', 1);
+            $mediaFiles = $mediaFiles->where('created_by_id', Auth::id());
         // }
 
         if ($request->type != 'all') {
@@ -74,8 +73,8 @@ class MediaManagerController extends Controller
         try {
             (new MediaManager())->storeImage($request);
             flash()->success(__('Media uploaded successfully'));
-        } catch (Throwable $th) {
-            throw $th;
+        } catch (Throwable $throwable) {
+            throw $throwable;
         }
 
     }

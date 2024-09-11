@@ -1,5 +1,7 @@
-@include('layouts.header')
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    @include('layouts.header')
+<body>
 @include('layouts.top-navbar')
   @include('layouts.side-navbar')
   <div class="main-wrapper" id="main_area">
@@ -38,5 +40,7 @@
       </div>
   </div>
 
-@include('inc.media-manager.media-manager')
-@include('layouts.footer')
+    @include('inc.media-manager.media-manager')
+    @include('layouts.footer')
+</body>
+</html>

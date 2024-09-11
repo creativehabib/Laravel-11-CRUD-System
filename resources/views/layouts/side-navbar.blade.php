@@ -9,15 +9,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('post.index')}}">
+              <a class="nav-link" href="{{route('posts.index')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                 Post
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('category.index')}}">
+                <a class="nav-link" href="{{route('categories.index')}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                  Category
+                  Categories
                 </a>
               </li>
 
@@ -27,11 +27,11 @@
                   Media Manager
                 </a>
               </li>
-              
+
           </ul>
 
 
-  
+
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Saved reports</span>
           </h6>

@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, CreatedUpdatedBy;
     protected $guarded = [];
 
     public const STATUS_ACTIVE = 1;
@@ -30,21 +30,26 @@ class Category extends Model
     public const IMAGE_UPLOAD_PATH = 'images/uploads/category/';
 
     /**
-     * @param Request $request
+     * @param Builder $builder
      * @return Builder|Model
-     * @throws Exception
      */
 
-     final public function scopeActive(Builder $builder)
+     final public function scopeActive(Builder $builder): Model|Builder
      {
         return $builder->where('status', self::STATUS_ACTIVE);
      }
 
+    /**
+     * @throws Exception
+     */
     final public function storeCategory(Request $request) : Model|Builder
     {
         return self::query()->create($this->prepareData($request));
     }
 
+    /**
+     * @throws Exception
+     */
     final public function updateCategory(Request $request, Model $category) :bool
     {
         return $category->update($this->prepareData($request, $category));
@@ -52,7 +57,7 @@ class Category extends Model
 
     final public function get_category_list()
     {
-        return self::query()->with('parent')->paginate(5);
+        return self::query()->with('parent')->orderBy('id','desc')->paginate(5);
     }
 
     final public function get_category_assoc()
@@ -75,6 +80,7 @@ class Category extends Model
             'parent_id'     => $request->input('parent_id'),
             'cat_image'     => $request->input('cat_image')
         ];
+//        dd($data);
         // if ($request->hasFile('image')){
         //     if($category){
         //         if(File::exists(self::IMAGE_UPLOAD_PATH . $category->image)){
@@ -120,6 +126,16 @@ class Category extends Model
     public function post(): HasMany
     {
         return $this->hasMany(Post::class, 'category_id');
+    }
+
+    final public function created_by() :BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    final public function updated_by() :BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by_id');
     }
 
 

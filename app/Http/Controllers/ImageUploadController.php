@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
-class ImageUloadController extends Controller
+class ImageUploadController extends Controller
 {
-	public function imageUpload(Request $request)	
+	public function imageUpload(Request $request)
 	{
 		$mainImage = $request->file('file');
 		$filename = time(). '.' . $mainImage->extension();
 		Image::make($mainImage)->save(public_path('tinymce_images/' . $filename));
 
 		// $mainImage->move(public_path('tinymce_images/' . $filename));
-		
+
 
 		return json_encode(['location' => asset('tinymce_images/' .$filename)]);
 

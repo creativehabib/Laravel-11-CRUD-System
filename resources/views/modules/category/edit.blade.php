@@ -3,10 +3,10 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="d-grid grap-2 d-md-flex justify-content-md-end">
-				<a href="{{route('category.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+				<a href="{{route('categories.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
 			</div>
 
-            <form action="{{route('category.update', $category->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('categories.update', $category->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
 				@method('PUT')
                 @include('modules.category.partials.form')
@@ -16,7 +16,7 @@
 	</div>
 @endsection
 @push('script')
-<x-head.tinymce-config/>
+{{--<x-head.tinymce-config/>--}}
 
 <script>
 	// runs when the document is ready --> for media files

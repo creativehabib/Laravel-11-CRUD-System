@@ -5,7 +5,7 @@ $("#image_upload_input").on("change", function (e) {
 
 function countWord() {
     // Get the input text value
-    let words = document.getElementById("descriptions").value;
+    let words = document.getElementById("description").value;
     // Initialize the word counter
     let count = 0;
 

@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark flex-md-nowrap p-0">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url('dashboard') }}">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ staticAsset('assets/image/favicon-16x16.png')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
             Ebdresults.com
         </a>

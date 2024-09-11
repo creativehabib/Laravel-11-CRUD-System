@@ -16,7 +16,7 @@
 					</form>
 				</div>
 				<div class="">
-					<a href="{{route('category.create')}}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Add Category</a>
+					<a href="{{route('categories.create')}}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Add Category</a>
 				</div>
 			</div>
 			<table class="table table-bordered table-striped mt-4">
@@ -24,6 +24,7 @@
 					<tr>
 						<th width="80px" class="text-center">SL</th>
 						<th>Name</th>
+                        <th>Created By</th>
 						<th class="text-center">Status</th>
 						<th class="text-center">Post Count</th>
 						<th>Description</th>
@@ -36,6 +37,7 @@
 						<tr class="align-middle">
 							<td class="text-center">{{$loop->iteration}}</td>
 							<td>{{$category->name}}</td>
+                            <td>{{$category->created_by?->name ?? 'Demo Author'}}</td>
 							<td class="text-center">
 								@if($category->status == \App\Models\Category::STATUS_ACTIVE)
 									<i class="fas fa-circle-check text-success"></i>
@@ -48,9 +50,9 @@
 							<td>{!! htmlspecialchars_decode($category->description) !!}</td>
 							<td class="text-center"><img src="{{staticAsset($category->image?->media_file ?? 'assets/image/default-image.jpg')}}" alt="{{ $category->image?->media_alt ?? 'Not alt title' }}" class="img-thumbnail"></td>
 							<td class="text-center">
-								<form method="POST" action="{{route('category.destroy',$category->id)}}">
-									<a href="{{route('category.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i></a>
-									<a href="{{route('category.edit',$category->id)}}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-pencil"></i></a>
+								<form method="POST" action="{{route('categories.destroy',$category->id)}}">
+									<a href="{{route('categories.show',$category->id)}}" class="btn btn-sm btn-info text-white"><i class="fa-solid fa-eye"></i></a>
+									<a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-primary text-white"><i class="fa-solid fa-pencil"></i></a>
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete it?');"><i class="fa-solid fa-trash-can"></i></button>
@@ -58,7 +60,7 @@
 							</td>
 						</tr>
 					@empty
-						<tr><td class="text-center" colspan="6">There are no data found</td></tr>
+						<tr><td class="text-center" colspan="8">There are no data found</td></tr>
 					@endforelse
 				</tbody>
 			</table>

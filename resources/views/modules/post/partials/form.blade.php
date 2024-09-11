@@ -34,7 +34,7 @@
             <label for="description" class="form-label">Post Description:</label>
             <textarea
                 class="form-control @error('post_description') is-invalid @enderror"
-                id="descriptions"
+                id="description"
                 oninput="countWord()"
                 name="post_description"
                 placeholder="Enter description"

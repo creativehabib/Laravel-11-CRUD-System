@@ -37,7 +37,6 @@
                     name="status"
                     id="status"
                     class="form-control @error('status') is-invalid @enderror">
-                    <option value="">Select</option>
                     @foreach(\App\Models\Category::STATUS_LIST as $key => $value)
                         <option value="{{$key}}" @selected( old('status', $key == $category->status ?? null))>{{ $value }}</option>
                     @endforeach

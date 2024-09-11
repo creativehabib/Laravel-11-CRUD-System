@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Trait\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, CreatedUpdatedBy;
     protected $guarded = [];
 
     public const STATUS_ACTIVE = 1;
@@ -58,7 +59,7 @@ class Post extends Model
 
     final public function get_post_list()
     {
-        return self::query()->paginate(5);
+        return self::query()->orderBy('id','desc')->paginate(5);
     }
 
     public function storePost(Request $request){

@@ -7,6 +7,9 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Seo;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Throwable;
 
 class PostController extends Controller
@@ -21,9 +24,9 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
-    public function create()
+    public function create(): Factory|View|\Illuminate\Foundation\Application|Application
     {
         $post = new Post();
         $category = new Category();
@@ -40,7 +43,7 @@ class PostController extends Controller
             $post = (new Post())->storePost($request);
             (new Seo())->store_seo($request, $post);
             flash()->success(__('Post created successfully'));
-            return redirect()->route('post.index');
+            return redirect()->route('posts.index');
         }catch(Throwable $throwable){
 
         }
@@ -59,7 +62,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = (new Category())->get_category_assoc();        
+        $categories = (new Category())->get_category_assoc();
         return view('modules.post.edit', compact('post', 'categories'));
     }
 
@@ -72,7 +75,7 @@ class PostController extends Controller
             (new Post())->updatePost($request, $post);
             (new Seo())->update_seo($request, $post);
             flash()->success(__('Post updated successfully'));
-            return redirect()->route('post.index');
+            return redirect()->route('posts.index');
         } catch(Throwable $throwable){
 
         }

@@ -82,9 +82,9 @@
 
 
         //Reset input file
-        $('input[type="file"][name="media_file"]').val('');
 
-        $('input[type="file"][name="media_file"]').on('change',function() {
+        //Image preview
+        $('input[type="file"][name="media_file"]').on('change', function(){
             const img_path = $(this)[0].value;
             const img_holder = $('#media_preview_img');
             const currentImagePath = $(this).data('value');
@@ -111,6 +111,7 @@
             $(form).find('input[type="file"]').val('');
             $(form).find('#media_preview_img').html($(form).find('input[type="file"]').data('value'));
         });
+
 
 
         //Update Media
@@ -143,8 +144,27 @@
 
         </script>
 
+
+        <script>
+            ClassicEditor
+            .create( document.querySelector( '#description' ),{
+
+                ui: {
+                    poweredBy: {
+                        hidden: true,
+                    }
+                }
+
+            } )
+            .catch( error => {
+            console.error( error );
+            });
+
+            $ckeditor = new CKEditor();
+            const data = editor.getData();
+            console.log(data)
+
+        </script>
+
         <!-- media-manager scripts -->
         @include('inc.media-manager.uppyScripts');
-
-    </body>
-</html>

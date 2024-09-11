@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('media_managers', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->unsignedBigInteger('updated_by_id')->nullable();
             $table->text('media_title')->nullable();
             $table->text('media_alt')->nullable();
             $table->longText('media_file')->nullable();

@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Trait\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class MediaManager extends Model
 {
-    use HasFactory;
+    use HasFactory, CreatedUpdatedBy;
     protected $guarded = [];
 
     /**
@@ -33,7 +36,6 @@ class MediaManager extends Model
         if($request->hasFile('media_file')){
             $OriginalFileName = basename($request->file('media_file')->getClientOriginalName(), ".".$request->file('media_file')->getClientOriginalExtension());
             $data = [
-                'user_id'           => 1,
                 'media_title'       => $OriginalFileName,
                 'media_alt'         => $OriginalFileName,
                 'media_file'        => $request->file('media_file')->store('uploads/media'),
@@ -48,6 +50,16 @@ class MediaManager extends Model
             }
             return $data;
         }
+    }
+
+    final public function created_by() :BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    final public function updated_by() :BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by_id');
     }
 
     final public function delete_media(Model $model): void

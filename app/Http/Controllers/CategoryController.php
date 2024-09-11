@@ -41,7 +41,7 @@ class CategoryController extends Controller
             $category = (new Category())->storeCategory($request);
             (new Seo())->store_seo($request, $category);
             flash()->success(__('Category created successfully'));
-            return redirect()->route('category.index');
+            return redirect()->route('categories.index');
         }catch(Throwable $throwable){
 
         }
@@ -73,7 +73,7 @@ class CategoryController extends Controller
             (new Category())->updateCategory($request,$category);
             (new Seo())->update_seo($request, $category);
             flash()->success(__('Category updated successfully'));
-            return redirect()->route('category.index');
+            return redirect()->route('categories.index');
         }catch(Throwable $throwable){
 
         }
@@ -86,7 +86,7 @@ class CategoryController extends Controller
     {
         $category->delete();
         flash()->success(__('Category deleted successfully'));
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
 
